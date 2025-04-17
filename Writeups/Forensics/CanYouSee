@@ -6,5 +6,27 @@ Solution:
 
 First thing that i checked was the file type, using the file command
 
-<img src="Writeups/Forensics/Captură de ecran 2025-04-17 172825.png"  alt="Description">
+┌──(horia㉿horia)-[~/Documents/forensics]
+└─$ file ukn_reality.jpg
+ukn_reality.jpg: JPEG image data, JFIF standard 1.01, resolution (DPI), density 72x72, segment length 16, baseline, precision 8, 4308x2875, components 3
+                                                                                                                                                              
+As you can see it really is a jpg so i used the online tool https://www.aperisolve.com/ to dig deeper
+Once i uploaded the image i checked the strings
 
+JFIF
+7http://ns.adobe.com/xap/1.0/
+<?xpacket begin='
+' id='W5M0MpCehiHzreSzNTczkc9d'?>
+<x:xmpmeta xmlns:x='adobe:ns:meta/' x:xmptk='Image::ExifTool 11.88'>
+<rdf:RDF xmlns:rdf='http://www.w3.org/1999/02/22-rdf-syntax-ns#'>
+ <rdf:Description rdf:about=''
+  xmlns:cc='http://creativecommons.org/ns#'>
+  <cc:attributionURL rdf:resource='cGljb0NURntNRTc0RDQ3QV9ISUREM05fZDhjMzgxZmR9Cg=='/>
+ </rdf:Description>
+</rdf:RDF>
+</x:xmpmeta>
+
+Upon a closer look i noticed 'cGljb0NURntNRTc0RDQ3QV9ISUREM05fZDhjMzgxZmR9Cg==' which looks like a base64 string.
+I decoded it with https://www.base64decode.org/ and got the flag
+
+picoCTF{ME74D47A_HIDD3N_d8c381fd}
